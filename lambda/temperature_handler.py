@@ -11,6 +11,8 @@ def lambda_handler(event, context):
         # Extraer los datos del evento
         device_id = event['deviceId']
         temperatura = event['temperature']
+        humedad = event['humidity']
+        corte = event['corte']
         timestamp = event['timestamp']  # Timestamp recibido en el evento
         timestamp_number = int(time.mktime(time.strptime(timestamp, "%Y-%m-%dT%H:%M:%S")))
 
@@ -19,7 +21,9 @@ def lambda_handler(event, context):
             Item={
                 'deviceId': device_id,
                 'timestamp': timestamp_number,  # Guardar el timestamp recibido
-                'temperature': temperatura
+                'temperature': temperatura,
+                'humidity': humedad,
+                'corte': corte
             }
         )
 
